@@ -1,0 +1,2 @@
+arm:dynamixel_motor/dynamixel_controllers:dynamixel_motor/dynamixel_driver:dynamixel_motor/dynamixel_motor:dynamixel_motor/dynamixel_msgs:dynamixel_motor/dynamixel_tutorials:imgpcl:navigation_test:socket:speech:turtlebot_follower
+-DCATKIN_DEVEL_PREFIX=/home/kamerider/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/kamerider/catkin_ws/install -G Unix Makefiles
