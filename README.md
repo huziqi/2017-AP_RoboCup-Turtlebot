@@ -22,7 +22,7 @@ The robot is surrounded by 5 persons. These 5 persons are located at different d
   * ineract with human through speech including understanding the meaning of the conversation and respond to them
   * face recognition and sex recognition
 
-restaurant
+Restaurant
 --------
 The flow of the task:
 First robot is settled nearby a bar, and robot should tell the bar is on its right or left. Then one of the persons in the restaurant begin to waving his hands to call the robot, and robot should recognize him and move towards him. When it moves in front of the person, a conversation begins which maily about which food the person want to order. Then robot should go back to the bar and fetch the wanted food for the person.
