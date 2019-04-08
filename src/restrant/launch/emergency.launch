@@ -1,0 +1,9 @@
+<!-- 急停测试launch文件 -->
+<launch>
+  <!-- 唤醒turtlebot -->
+  <include file="/home/isi/turtlebot/src/turtlebot/turtlebot_bringup/launch/minimal.launch" />
+  <!-- 加载C++节点 -->
+  <node pkg="navigation_test" type="emergency" name="emergency"  launch-prefix="xterm -e"/>
+  
+  <node pkg="navigation_test" type="forward" name="forward"/>
+</launch>

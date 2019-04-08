@@ -1,0 +1,23 @@
+<launch>
+    <include file="/home/isi/turtlebot/src/turtlebot/turtlebot_bringup/launch/minimal.launch" /> 
+    <include file="/home/isi/turtlebot/src/turtlebot/turtlebot_bringup/launch/3dsensor.launch">
+   	 	<arg name="scan_topic" value="/scan" />
+    </include>
+
+	<!-- gmapping -->
+	<include file="/home/isi/turtlebot/src/turtlebot_apps/turtlebot_navigation/launch/includes/gmapping.launch.xml" />
+
+	<!-- Move base -->
+	<arg name="custom_param_file" default="/home/isi/turtlebot/src/turtlebot_apps/turtlebot_navigation/param/kinect_costmap_params.yaml"/>
+	<include file="/home/isi/turtlebot/src/turtlebot_apps/turtlebot_navigation/launch/includes/move_base.launch.xml">
+		<arg name="custom_param_file" value="$(arg custom_param_file)"/>
+	</include>
+	
+	<node pkg="navigation_test" type="restaurant_new" name="restaurant_new" launch-prefix="xterm -e" /> 
+    
+    <!-- 检测吧台-->
+    <node pkg="imgpcl" type="restaurant_bardetect" respawn="true" name="restaurant_bardetect" />
+    <node pkg="navigation_test" type="restaurant_turn" name="restaurant_turn" />
+    <!-- Rviz -->
+  <node name="rviz" pkg="rviz" type="rviz" respawn="true" args="-d $(find navigation_test)/rviz/navigation.rviz"/>
+</launch>

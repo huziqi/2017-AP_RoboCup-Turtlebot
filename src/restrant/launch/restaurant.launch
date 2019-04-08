@@ -1,0 +1,42 @@
+<!-- 建图launch文件 -->
+<launch>
+    <!--
+        唤起turtlebot
+    -->
+    <include file="/home/isi/turtlebot/src/turtlebot/turtlebot_bringup/launch/minimal.launch" /> 
+    
+    <!-- 
+        设置Gmapping包如下
+    -->
+    <!-- 设置摄像头参数 -->
+    <include file="/home/isi/turtlebot/src/turtlebot/turtlebot_bringup/launch/3dsensor.launch">
+        <!--arg name="rgb_processing" value="false" />
+        <arg name="depth_registration" value="false" />
+        <arg name="depth_processing" value="false" /-->
+        <arg name="scan_topic" value="/scan" />
+    </include>
+
+    <!--<include file="$(find turtlebot_navigation)/launch/includes/amcl/amcl.launch.xml" />-->
+    
+    
+    
+    <!-- 使能gmapping -->
+    <include file="/home/isi/turtlebot/src/turtlebot_apps/turtlebot_navigation/launch/includes/gmapping.launch.xml" />
+    
+    <!-- 使能move_base -->
+    <include file="/home/isi/turtlebot/src/turtlebot_apps/turtlebot_navigation/launch/includes/move_base.launch.xml" />
+
+    <!-- 开启rviz -->
+    <include file="$(find turtlebot_rviz_launchers)/launch/view_navigation.launch" />
+
+    <!-- 
+        手柄操作设置如下
+    -->
+    <!-- 速度平滑 -->
+    <!--<include file="/home/isi/turtlebot/src/turtlebot_apps/turtlebot_teleop/launch/keyboard_teleop.launch" /> --> 
+    <node pkg="navigation_test" type="restaurant" name="restaurant" launch-prefix="xterm -e" /> 
+    
+    <!-- 检测吧台-->
+    <node pkg="imgpcl" type="restaurant_bardetect" respawn="true" name="restaurant_bardetect" />
+    <node pkg="navigation_test" type="restaurant_turn" name="restaurant_turn" />
+</launch>
